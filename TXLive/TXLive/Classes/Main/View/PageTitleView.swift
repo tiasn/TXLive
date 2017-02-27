@@ -8,12 +8,23 @@
 
 import UIKit
 
+//代理的协议
+protocol pageTitleViewDelegate : class {
+    func pageTitleView(titleView : PageTitleView, selectedIndex index : Int)
+}
+
 fileprivate let kScrollLineH : CGFloat = 2
+fileprivate let kNormalColor : (CGFloat, CGFloat, CGFloat) = (85, 85,85)
+fileprivate let kSelectorColor : (CGFloat, CGFloat, CGFloat) = (255, 128, 0)
+
 
 class PageTitleView: UIView {
 
     //自定义属性：标题数组
-   fileprivate var titles : [String]
+    fileprivate var titles : [String]
+    fileprivate var currentIndex = 0;
+    weak var delegate : pageTitleViewDelegate?
+    
     
     // 懒加载属性
     fileprivate lazy var titleLables : [UILabel] = [UILabel]()
@@ -73,7 +84,6 @@ extension PageTitleView{
         setupBottomLineAndScrollLine()
     }
     
-    
     fileprivate func setupTitleLables() {
         
         //labe的值
@@ -90,13 +100,18 @@ extension PageTitleView{
             lable.text = title
             lable.tag = index
             lable.font = UIFont.systemFont(ofSize: 15)
-            lable.textColor = UIColor.darkGray
+            lable.textColor = UIColor(r: kNormalColor.0, g: kNormalColor.1, b: kNormalColor.2)
             lable.textAlignment = .center
             
             //设置labe的Frame
             let labelX : CGFloat  = lableW * CGFloat(index)
-            
             lable.frame = CGRect(x: labelX, y: lableY, width: lableW, height: lableH)
+
+            // 添加点击事件
+            lable.isUserInteractionEnabled = true
+            let tapGes = UITapGestureRecognizer(target: self, action: #selector(self.titleLableClick(_ :)))
+            lable.addGestureRecognizer(tapGes)
+            
             
             //添加lable到ScrollView
             scrollView.addSubview(lable)
@@ -121,12 +136,84 @@ extension PageTitleView{
             return
         }
         
-        firstLable.textColor = UIColor.orange
+        firstLable.textColor = UIColor(r: kSelectorColor.0, g: kSelectorColor.1, b: kSelectorColor.2)
         
         scrollView.addSubview(scrollLine)
         scrollLine.frame = CGRect(x: firstLable.frame.origin.x, y: frame.height - kScrollLineH, width: firstLable.frame.size.width, height: kScrollLineH)
         
     }
+}
+
+
+// MARK:- 监听事件
+extension PageTitleView{
+
+    @objc fileprivate func titleLableClick(_ tapGes : UIGestureRecognizer){
+       
+        //点击的lable
+        guard let currentLable = tapGes.view as? UILabel else {
+            return
+        }
+        
+        // 旧的lable
+        let oldLable = titleLables[currentIndex]
+        
+        if oldLable.tag == currentLable.tag {
+            return
+        }
+        
+        // 修改颜色
+        currentLable.textColor = UIColor(r: kSelectorColor.0, g: kSelectorColor.1, b: kSelectorColor.2)
+        oldLable.textColor = UIColor(r: kNormalColor.0, g: kNormalColor.1, b: kNormalColor.2)
+        
+        let scrollLineX = CGFloat(currentLable.tag) * scrollLine.frame.width
+        UIView .animate(withDuration: 0.25) {
+            
+            self.scrollLine.transform = CGAffineTransform(translationX: scrollLineX, y: 0)
+        }
+        
+        
+        //保存最新的lable下标
+        currentIndex = currentLable.tag
+        
+        
+        //通知代理
+        delegate?.pageTitleView(titleView: self, selectedIndex: currentIndex)
+    }
+
+}
+
+
+// MARK:- 对外暴露的方法
+extension PageTitleView {
+    
+    func setTitleWithProgress(progress : CGFloat, sourceIndex : Int, targetIndex : Int) {
+        //取出lable
+        let sourceLable = titleLables[sourceIndex]
+        let targetLable = titleLables[targetIndex]
+        
+        let moveTotal = targetLable.frame.origin.x - sourceLable.frame.origin.x
+        let moveX = moveTotal * progress
+        
+        //指示线联动
+        scrollLine.frame.origin.x = sourceLable.frame.origin.x + moveX
+        
+        
+        //颜色渐变
+        //取出渐变范围
+        let colorDelta = (kSelectorColor.0 - kNormalColor.0, kSelectorColor.1 - kNormalColor.1, kSelectorColor.2 - kNormalColor.2)
+        
+        //sourceLabel变色
+        sourceLable.textColor = UIColor(r: kSelectorColor.0 - colorDelta.0 * progress, g: kSelectorColor.1 - colorDelta.1 * progress, b: kSelectorColor.2 - colorDelta.2 * progress)
+        
+        //targetLable变色
+        targetLable.textColor = UIColor(r: kNormalColor.0 + colorDelta.0 * progress, g: kNormalColor.1 + colorDelta.1*progress, b: kNormalColor.2 + colorDelta.2*progress)
+        
+        //保存最新的index
+        currentIndex = targetIndex
+        
+    }
+    
 }
 
 
