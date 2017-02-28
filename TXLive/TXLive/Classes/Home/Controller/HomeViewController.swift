@@ -28,14 +28,16 @@ class HomeViewController: UIViewController {
     fileprivate lazy var pageContentView : PageContentview = { [weak self] in
     
         //设置Frame
-        let topH = kStatusBarH + kNavgationBarH + kTitleViewH
+        let topH = kStatusBarH + kNavgationBarH + kTitleViewH + kTabbarH
         let contentH = kScreenH - topH
-        let contentFrame = CGRect(x: 0, y: topH, width: kScreenW, height: contentH)
+        let contentFrame = CGRect(x: 0, y: kStatusBarH + kNavgationBarH + kTitleViewH, width: kScreenW, height: contentH)
         
         //设置childVc
         var childVcs = [UIViewController]()
+            //推荐
+        childVcs.append(RecommendViewController())
         
-        for _ in 0..<4 {
+        for _ in 0..<3 {
             
             let vc = UIViewController()
             vc.view.backgroundColor = UIColor(r: CGFloat(arc4random_uniform(255)), g: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)))
