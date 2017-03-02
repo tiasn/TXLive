@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="CollectionHeaderView" customModule="TXLive" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -57,6 +57,10 @@
                 <constraint firstAttribute="trailing" secondItem="YUI-hn-g1H" secondAttribute="trailing" id="mqK-dl-9K3"/>
                 <constraint firstItem="YUI-hn-g1H" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="vRn-yD-wpL"/>
             </constraints>
+            <connections>
+                <outlet property="iconImageView" destination="MtI-Ap-ONP" id="ZVL-ZN-Orp"/>
+                <outlet property="titleLable" destination="XLS-JQ-LJY" id="hwd-bT-vgV"/>
+            </connections>
             <point key="canvasLocation" x="5" y="25"/>
         </collectionReusableView>
     </objects>

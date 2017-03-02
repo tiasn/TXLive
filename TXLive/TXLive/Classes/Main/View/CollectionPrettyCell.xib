@@ -45,39 +45,46 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999在线" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fro-NY-zAI">
-                        <rect key="frame" x="113" y="5" width="58" height="21"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.35129494863013699" colorSpace="calibratedWhite"/>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsV-EB-gaN">
+                        <rect key="frame" x="108" y="8" width="60" height="20"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.1954195205" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="aNO-sV-Gbr"/>
-                            <constraint firstAttribute="width" constant="58" id="wjZ-xN-n8X"/>
+                            <constraint firstAttribute="width" constant="60" id="hFl-RC-EYn"/>
+                            <constraint firstAttribute="height" constant="20" id="wkY-j5-qIg"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="highlightedColor" white="0.0" alpha="0.1954195205479452" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="666在线">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="3"/>
+                                <integer key="value" value="5"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
-                    </label>
+                    </button>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="Taf-aN-3Sv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2uV-d2-wvp"/>
+                <constraint firstAttribute="trailing" secondItem="PsV-EB-gaN" secondAttribute="trailing" constant="8" id="3RT-Zx-iZb"/>
                 <constraint firstAttribute="bottom" secondItem="Taf-aN-3Sv" secondAttribute="bottom" constant="10" id="3zp-f7-eJx"/>
                 <constraint firstAttribute="trailing" secondItem="AqX-Va-vET" secondAttribute="trailing" id="L0E-W3-V4H"/>
                 <constraint firstItem="Jti-MF-ruj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="M30-8S-Ovk"/>
                 <constraint firstItem="Jti-MF-ruj" firstAttribute="top" secondItem="AqX-Va-vET" secondAttribute="bottom" constant="5" id="SoW-Va-SCK"/>
                 <constraint firstItem="AqX-Va-vET" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="WOD-ZA-ZhV"/>
-                <constraint firstAttribute="trailing" secondItem="fro-NY-zAI" secondAttribute="trailing" constant="5" id="dR0-aP-bPg"/>
                 <constraint firstAttribute="trailing" secondItem="Jti-MF-ruj" secondAttribute="trailing" constant="5" id="doW-DG-7FD"/>
-                <constraint firstItem="fro-NY-zAI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="jTW-HO-3LR"/>
+                <constraint firstItem="PsV-EB-gaN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="hrN-jh-ZDJ"/>
                 <constraint firstItem="Taf-aN-3Sv" firstAttribute="top" secondItem="Jti-MF-ruj" secondAttribute="bottom" constant="5" id="ni6-y9-0Ka"/>
                 <constraint firstItem="AqX-Va-vET" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="u89-lw-f98"/>
             </constraints>
             <size key="customSize" width="176" height="223"/>
+            <connections>
+                <outlet property="anchorName" destination="Jti-MF-ruj" id="TSg-jd-Z1Q"/>
+                <outlet property="cityLable" destination="Taf-aN-3Sv" id="Qee-9t-4Nc"/>
+                <outlet property="imageView" destination="AqX-Va-vET" id="Q4r-wh-cRT"/>
+                <outlet property="onlineBtn" destination="PsV-EB-gaN" id="usp-3c-zkw"/>
+            </connections>
             <point key="canvasLocation" x="-92" y="-11.5"/>
         </collectionViewCell>
     </objects>

@@ -30,7 +30,7 @@
                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Img_default" translatesAutoresizingMaskIntoConstraints="NO" id="HGh-aR-CPj" customClass="img_default">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Img_default" translatesAutoresizingMaskIntoConstraints="NO" id="HGh-aR-CPj">
                         <rect key="frame" x="0.0" y="0.0" width="211" height="149"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -68,6 +68,12 @@
                 <constraint firstItem="m7L-u5-yK6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wW8-Sd-RRT"/>
             </constraints>
             <size key="customSize" width="211" height="178"/>
+            <connections>
+                <outlet property="iconImage" destination="HGh-aR-CPj" id="Ccd-LO-Mns"/>
+                <outlet property="nikeName" destination="HLK-63-RP9" id="q8Y-yg-Lcs"/>
+                <outlet property="onlineBtn" destination="Dm8-fJ-m8o" id="8vU-6z-DR7"/>
+                <outlet property="roomName" destination="1lR-yE-1gR" id="dDH-8t-WjG"/>
+            </connections>
             <point key="canvasLocation" x="-25.5" y="4"/>
         </collectionViewCell>
     </objects>
