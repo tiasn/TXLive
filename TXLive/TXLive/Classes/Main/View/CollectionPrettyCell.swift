@@ -50,6 +50,7 @@ class CollectionPrettyCell: UICollectionViewCell {
             let iconURL = NSURL(string: anchor.vertical_src)
             
             imageView.kf.setImage(with: iconURL?.absoluteURL)
+
             
         }
     }

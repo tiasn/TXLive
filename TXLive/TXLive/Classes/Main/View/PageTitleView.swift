@@ -155,12 +155,13 @@ extension PageTitleView{
             return
         }
         
+        if currentIndex == currentLable.tag {
+            return
+        }
+
         // 旧的lable
         let oldLable = titleLables[currentIndex]
         
-        if oldLable.tag == currentLable.tag {
-            return
-        }
         
         // 修改颜色
         currentLable.textColor = UIColor(r: kSelectorColor.0, g: kSelectorColor.1, b: kSelectorColor.2)
@@ -169,7 +170,7 @@ extension PageTitleView{
         let scrollLineX = CGFloat(currentLable.tag) * scrollLine.frame.width
         UIView .animate(withDuration: 0.25) {
             
-            self.scrollLine.transform = CGAffineTransform(translationX: scrollLineX, y: 0)
+            self.scrollLine.frame.origin.x = scrollLineX
         }
         
         

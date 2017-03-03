@@ -44,7 +44,7 @@ class CollectionNormalCell: UICollectionViewCell {
             
             roomName.text = anchor.room_name
             
-            let url = NSURL(string : anchor.vertical_src)            
+            let url = NSURL(string : anchor.vertical_src)
             iconImage.kf.setImage(with: url?.absoluteURL)
         
         }
